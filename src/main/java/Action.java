@@ -1,0 +1,8 @@
+public enum Action {
+        ADVANCE_CONVERSATION,
+        ADVANCE_AND_REMEMBER,
+        REMEMBER_FROM_CHAT,
+        OPEN_TRADE,
+        PAY_AND_ADVANCE,
+        CHANGE_REPUTATION
+}

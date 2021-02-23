@@ -1,0 +1,73 @@
+{
+  "nodes": [
+    {
+      "node": 0,
+      "text": "Hello there! What's your name?",
+      "responses": [
+        {
+          "text": "Hi! My name is %!player_name%",
+          "action": "advance_and_remember",
+          "next_node": 1,
+          "key": "player_name",
+          "value": "%!player_name%"
+        },
+        {
+          "text": "Nice to meet you! My name is [ENTER IN CHAT]",
+          "action": "remember_from_chat",
+          "next_node": 1,
+          "key": "player_name"
+        },
+        {
+          "text": "Hello! My name is %!player_name%, but you can call me [ENTER IN CHAT]",
+          "action": "remember_from_chat",
+          "next_node": 1,
+          "key": "player_name"
+        },
+        {
+          "text": "I'd rather not say",
+          "action": "advance_conversation",
+          "next_node": 2
+        }
+      ]
+    },
+    {
+      "node": 1,
+      "text": [
+        "Nice to meet you %player_name%!"
+      ],
+      "final": true
+    },
+    {
+      "node": 2,
+      "text": "That's okay.",
+      "final": true
+    },
+    {
+      "node": -1,
+      "text": "Can you get me one of those Portable Reactors?",
+      "responses": [
+        {
+          "text": "I've got one for you right here",
+          "action": "pay_and_advance",
+          "next_node": 3,
+          "item": "portable_nuclear_reactor"
+        },
+        {
+          "text": "Sorry, I can't help you with that",
+          "action": "advance_conversation",
+          "next_node": 4
+        }
+      ]
+    },
+    {
+      "node": 3,
+      "text": "Thanks a lot!",
+      "final": true
+    },
+    {
+      "node": 4,
+      "text": "That's okay.",
+      "final": true
+    }
+  ]
+}
