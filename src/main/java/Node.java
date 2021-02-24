@@ -48,15 +48,22 @@ public class Node {
     }
 
     /**
+     * Returns the arraylist of responses for this node
+     * @return ArrayList of Response objects
+     */
+    public ArrayList<Response> getResponseArrayList() {
+        return responseList;
+    }
+
+    /**
      * Return the response options available to this node as a JsonArray
      * @return JsonArray, the generated JsonArray
      */
     public JsonArray getResponsesJsonArray() {
+
         JsonArray jsonArray = new JsonArray();
 
-        responseList.forEach(response -> {
-            jsonArray.add(response.getJsonObject());
-        });
+        responseList.forEach(response -> jsonArray.add(response.getJsonObject()));
 
         return jsonArray;
     }

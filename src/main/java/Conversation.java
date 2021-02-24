@@ -33,7 +33,13 @@ public class Conversation {
         // Adds the required properties for a node
         jsonNode.addProperty("node", node.getId());
         jsonNode.add("text", node.getTextsJsonArray());
-        jsonNode.add("responses", node.getResponsesJsonArray());
+
+        // If there are no responses, this is a final node
+        if (!node.getResponseArrayList().isEmpty()) {
+            jsonNode.add("responses", node.getResponsesJsonArray());
+        } else {
+            jsonNode.addProperty("final", true);
+        }
 
         nodesJsonArray.add(jsonNode);
     }

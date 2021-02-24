@@ -1,3 +1,7 @@
+import actions.AdvanceAndRemember;
+import actions.IAction;
+import actions.PayAndAdvance;
+import actions.RememberFromChat;
 import com.google.gson.JsonObject;
 
 /**
@@ -5,9 +9,8 @@ import com.google.gson.JsonObject;
  */
 public class Response {
     private String text;
-    private Action action;
+    private IAction action;
     private int nextNode;
-    private boolean isFinal;
 
     /**
      * Constructs a response object with the provided information
@@ -15,7 +18,7 @@ public class Response {
      * @param action The action of the response
      * @param nextNode The node that this node points to go to next
      */
-    public Response(String text, Action action, int nextNode) {
+    public Response(String text, IAction action, int nextNode) {
         this.text = text;
         this.action = action;
         this.nextNode = nextNode;
@@ -28,41 +31,19 @@ public class Response {
     public JsonObject getJsonObject() {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("text", text);
-        jsonObject.addProperty("action", this.getActionString());
+        jsonObject.addProperty("action", this.action.getActionString());
         jsonObject.addProperty("next_node", this.nextNode);
 
-        return jsonObject;
-    }
-
-    /**
-     * Return the string required in the json file for this action
-     * @return String, the formatted string
-     */
-    private String getActionString() {
-        String string = "";
-
-        switch (this.action) {
-            case ADVANCE_AND_REMEMBER:
-                string = "advance_and_remember";
-                break;
-            case ADVANCE_CONVERSATION:
-                string = "advance_conversation";
-                break;
-            case REMEMBER_FROM_CHAT:
-                string = "remember_from_chat";
-                break;
-            case OPEN_TRADE:
-                string = "open_trade";
-                break;
-            case PAY_AND_ADVANCE:
-                string = "pay_and_advance";
-                break;
-            case CHANGE_REPUTATION:
-                string = "change_reputation";
-                break;
+        if (this.action instanceof RememberFromChat) {
+            jsonObject.addProperty("key", ((RememberFromChat) this.action).getKey());
+        } else if (this.action instanceof AdvanceAndRemember) {
+            jsonObject.addProperty("key", ((AdvanceAndRemember) this.action).getKey());
+            jsonObject.addProperty("value", ((AdvanceAndRemember) this.action).getValue());
+        } else if (this.action instanceof PayAndAdvance) {
+            jsonObject.addProperty("item", ((PayAndAdvance) this.action).getItem());
         }
 
-        return string;
+        return jsonObject;
     }
 
 }
