@@ -1,6 +1,6 @@
 package gui;
 
-import conversationElements.Node;
+import conversationElements.ConvoNode;
 import conversationElements.Response;
 import gui.components.NodesBox;
 import gui.components.buttons.AddNodeButton;
@@ -8,7 +8,6 @@ import gui.components.buttons.BuildConversationButton;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -26,8 +25,10 @@ public class GUI extends Application {
 
     public static final HBox WINDOW_BOX = new HBox(10);
     public static final NodesBox NODES_BOX = new NodesBox();
-    public static final HashMap<Integer, Node> NODE_MAP = new HashMap<>();
+    public static final HashMap<Integer, ConvoNode> NODE_MAP = new HashMap<>();
     public static final ArrayList<Response> RESPONSE_LIST = new ArrayList<>();
+
+    public static VBox layout = new GUILayout().getLayout();
 
     // Starts the gui
     @Override
@@ -39,11 +40,7 @@ public class GUI extends Application {
 
         WINDOW_BOX.getChildren().addAll(addNodeButton, buildConvoButton);
 
-        VBox layout = new GUILayout().getLayout();
         layout.getChildren().addAll(WINDOW_BOX, NODES_BOX.getComponent());
-
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setContent(layout);
 
         Scene scene = new Scene(layout, WINDOW_WIDTH, WINDOW_HEIGHT);
         primaryStage.setScene(scene);

@@ -1,6 +1,5 @@
 package gui.components;
 
-import gui.IComponent;
 import gui.components.buttons.RemoveNodeButton;
 import javafx.scene.layout.HBox;
 

@@ -8,11 +8,11 @@ import java.util.Arrays;
 /**
  * A class to model a conversation node in the alien conversation system in Bits+
  */
-public class Node {
+public class ConvoNode {
 
     private final int nodeId;
-    private final ArrayList<String> nodeTexts = new ArrayList<>();
-    private final ArrayList<Response> responseList = new ArrayList<>();
+    private ArrayList<String> nodeTexts = new ArrayList<>();
+    private ArrayList<Response> responseList = new ArrayList<>();
 
     private static int startingNodeId = 0;
 
@@ -22,7 +22,7 @@ public class Node {
      * @param texts     The available text options for the node
      * @param responses The responses available to the node
      */
-    public Node(String[] texts, Response[] responses) {
+    public ConvoNode(String[] texts, Response[] responses) {
         startingNodeId++;
 
         this.nodeId = startingNodeId;
@@ -32,18 +32,18 @@ public class Node {
         this.responseList.addAll(Arrays.asList(responses));
     }
 
-    public Node() {
+    public ConvoNode() {
         startingNodeId++;
 
         this.nodeId = startingNodeId;
     }
 
-    public void setNodeTexts(String[] texts) {
-        this.nodeTexts.addAll(Arrays.asList(texts));
+    public void setNodeTexts(ArrayList<String> texts) {
+        this.nodeTexts = texts;
     }
 
-    public void setResponseList(Response[] responses) {
-        this.responseList.addAll(Arrays.asList(responses));
+    public void setResponseList(ArrayList<Response> responses) {
+        this.responseList = responses;
     }
 
     /**

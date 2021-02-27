@@ -1,6 +1,7 @@
 package conversationElements;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -13,37 +14,45 @@ import java.util.Arrays;
 public class Conversation {
 
     private final JsonArray nodesJsonArray = new JsonArray();
-    private final ArrayList<Node> nodesList = new ArrayList<>();
+    private final ArrayList<ConvoNode> nodesList = new ArrayList<>();
 
     /**
      * Constructs a conversationElements.Conversation object with the provided Nodes
      *
-     * @param nodes an array of conversation Nodes
+     * @param convoNodes an array of conversation Nodes
      */
-    public Conversation(Node[] nodes) {
-        this.nodesList.addAll(Arrays.asList(nodes));
+    public Conversation(ConvoNode[] convoNodes) {
+        this.nodesList.addAll(Arrays.asList(convoNodes));
+    }
+
+    public Conversation() {
+
     }
 
     /**
      * Adds a node to the conversation
      *
-     * @param node conversationElements.Node, node to add
+     * @param convoNode conversationElements.Node, node to add
      */
-    public void addNode(Node node) {
+    public void encodeNode(ConvoNode convoNode) {
         JsonObject jsonNode = new JsonObject();
 
         // Adds the required properties for a node
-        jsonNode.addProperty("node", node.getId());
-        jsonNode.add("text", node.getTextsJsonArray());
+        jsonNode.addProperty("node", convoNode.getId());
+        jsonNode.add("text", convoNode.getTextsJsonArray());
 
         // If there are no responses, this is a final node
-        if (!node.getResponseArrayList().isEmpty()) {
-            jsonNode.add("responses", node.getResponsesJsonArray());
+        if (!convoNode.getResponseArrayList().isEmpty()) {
+            jsonNode.add("responses", convoNode.getResponsesJsonArray());
         } else {
             jsonNode.addProperty("final", true);
         }
 
         this.nodesJsonArray.add(jsonNode);
+    }
+
+    public void addNode(ConvoNode node) {
+        this.nodesList.add(node);
     }
 
     /**
@@ -52,11 +61,11 @@ public class Conversation {
      * @return String, a Json string
      */
     public String getJsonString() {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonObject conversationJsonObject = new JsonObject();
 
         // Add each node to a json array of nodes
-        this.nodesList.forEach(this::addNode);
+        this.nodesList.forEach(this::encodeNode);
 
         // Adds the nodes json array to a root json object
         conversationJsonObject.add("nodes", this.nodesJsonArray);

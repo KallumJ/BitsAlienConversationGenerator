@@ -1,6 +1,5 @@
 package gui.components;
 
-import gui.IComponent;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -19,6 +18,7 @@ public class GUITextField implements IComponent<HBox> {
      */
     public GUITextField(String labelText) {
         this.hbox = new HBox();
+        this.hbox.setId(labelText);
 
         // Configures a HBox with text field and label
         TextField textField = new TextField();

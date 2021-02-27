@@ -2,14 +2,13 @@ package gui.components.buttons;
 
 import conversationElements.Response;
 import gui.GUI;
-import gui.IComponent;
+import gui.components.IComponent;
 import gui.components.NodeChoiceDialog;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Label;
-import javafx.scene.control.TitledPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 

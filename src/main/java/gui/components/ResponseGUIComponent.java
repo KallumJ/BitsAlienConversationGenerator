@@ -1,11 +1,8 @@
 package gui.components;
 
 import conversationElements.Response;
-import gui.GUI;
-import gui.IComponent;
 import gui.components.buttons.AddNodeLinkButton;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 

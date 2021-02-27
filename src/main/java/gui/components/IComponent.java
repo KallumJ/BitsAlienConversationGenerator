@@ -1,4 +1,4 @@
-package gui;
+package gui.components;
 
 /**
  * An interface to implement behaviour to return the component being modelled

@@ -1,11 +1,7 @@
 package gui.components;
 
 import gui.GUI;
-import gui.IComponent;
-import javafx.event.EventHandler;
 import javafx.scene.control.ChoiceDialog;
-import javafx.scene.control.DialogEvent;
-import javafx.scene.control.TitledPane;
 
 import java.util.ArrayList;
 

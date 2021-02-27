@@ -3,7 +3,6 @@ package gui.components;
 import actions.AdvanceAndRemember;
 import actions.PayAndAdvance;
 import actions.RememberFromChat;
-import gui.IComponent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;

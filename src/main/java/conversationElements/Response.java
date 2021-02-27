@@ -69,4 +69,12 @@ public class Response {
     public int getResponseId() {
         return responseId;
     }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public void setAction(IAction action) {
+        this.action = action;
+    }
 }

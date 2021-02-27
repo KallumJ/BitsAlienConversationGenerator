@@ -1,8 +1,7 @@
 package gui.components;
 
-import conversationElements.Node;
+import conversationElements.ConvoNode;
 import gui.GUI;
-import gui.IComponent;
 import gui.components.buttons.AddNodeTextButton;
 import gui.components.buttons.AddResponsesButton;
 import javafx.geometry.Insets;
@@ -16,17 +15,17 @@ import javafx.scene.layout.VBox;
  */
 public class NodeGUIComponent implements IComponent<TitledPane> {
     private final TitledPane titledPane;
-    private final Node node;
+    private final ConvoNode convoNode;
 
     /**
      * Constructs a NodeGUIComponent Object
      */
     public NodeGUIComponent() {
-        this.node = new Node();
+        this.convoNode = new ConvoNode();
         this.titledPane = setupTitledPane();
         this.titledPane.setPadding(new Insets(30));
 
-        GUI.NODE_MAP.put(this.getNode().getId(), this.node);
+        GUI.NODE_MAP.put(this.getNode().getId(), this.convoNode);
     }
 
     /**
@@ -37,7 +36,8 @@ public class NodeGUIComponent implements IComponent<TitledPane> {
     private TitledPane setupTitledPane() {
         // Configure Titled Pane properties
         TitledPane titledPane = new TitledPane();
-        titledPane.setText("Node " + node.getId());
+        titledPane.setId("Node Titled Pane");
+        titledPane.setText("Node " + convoNode.getId());
         titledPane.setCollapsible(false);
         titledPane.setPadding(new Insets(10));
 
@@ -48,7 +48,7 @@ public class NodeGUIComponent implements IComponent<TitledPane> {
 
         // Add to titled pane
         VBox vbox = new VBox(10);
-        vbox.setId("Node " + node.getId());
+        vbox.setId("Node " + convoNode.getId());
         vbox.getChildren().addAll(nodeHeader, nodeTextButton, addResponsesButton);
 
         titledPane.setContent(vbox);
@@ -66,7 +66,7 @@ public class NodeGUIComponent implements IComponent<TitledPane> {
         return this.titledPane;
     }
 
-    public Node getNode() {
-        return node;
+    public ConvoNode getNode() {
+        return convoNode;
     }
 }

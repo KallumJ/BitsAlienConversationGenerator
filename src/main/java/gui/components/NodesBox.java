@@ -1,7 +1,6 @@
 package gui.components;
 
 import gui.GUI;
-import gui.IComponent;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
