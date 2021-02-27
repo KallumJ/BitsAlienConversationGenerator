@@ -1,3 +1,5 @@
+package conversationElements;
+
 import com.google.gson.JsonArray;
 
 import java.util.ArrayList;
@@ -8,26 +10,45 @@ import java.util.Arrays;
  */
 public class Node {
 
-    private int nodeId;
+    private final int nodeId;
     private final ArrayList<String> nodeTexts = new ArrayList<>();
     private final ArrayList<Response> responseList = new ArrayList<>();
 
+    private static int startingNodeId = 0;
+
     /**
      * Constructs a conversation node object with the provided information
-     * @param nodeId The id for the node
-     * @param texts The available text options for the node
+     *
+     * @param texts     The available text options for the node
      * @param responses The responses available to the node
      */
-    public Node(int nodeId, String[] texts, Response[] responses) {
-        this.nodeId = nodeId;
+    public Node(String[] texts, Response[] responses) {
+        startingNodeId++;
+
+        this.nodeId = startingNodeId;
 
         this.nodeTexts.addAll(Arrays.asList(texts));
 
         this.responseList.addAll(Arrays.asList(responses));
     }
 
+    public Node() {
+        startingNodeId++;
+
+        this.nodeId = startingNodeId;
+    }
+
+    public void setNodeTexts(String[] texts) {
+        this.nodeTexts.addAll(Arrays.asList(texts));
+    }
+
+    public void setResponseList(Response[] responses) {
+        this.responseList.addAll(Arrays.asList(responses));
+    }
+
     /**
      * Returns the text options for this node as a JsonArray
+     *
      * @return JsonArray, the generated JsonArray
      */
     public JsonArray getTextsJsonArray() {
@@ -41,6 +62,7 @@ public class Node {
 
     /**
      * Returns the id for this node
+     *
      * @return int, the node id
      */
     public int getId() {
@@ -49,21 +71,23 @@ public class Node {
 
     /**
      * Returns the arraylist of responses for this node
-     * @return ArrayList of Response objects
+     *
+     * @return ArrayList of conversationElements.Response objects
      */
     public ArrayList<Response> getResponseArrayList() {
-        return responseList;
+        return this.responseList;
     }
 
     /**
      * Return the response options available to this node as a JsonArray
+     *
      * @return JsonArray, the generated JsonArray
      */
     public JsonArray getResponsesJsonArray() {
 
         JsonArray jsonArray = new JsonArray();
 
-        responseList.forEach(response -> jsonArray.add(response.getJsonObject()));
+        this.responseList.forEach(response -> jsonArray.add(response.getJsonObject()));
 
         return jsonArray;
     }

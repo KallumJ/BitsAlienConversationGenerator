@@ -1,3 +1,5 @@
+package conversationElements;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -10,13 +12,12 @@ import java.util.Arrays;
  */
 public class Conversation {
 
-    public Gson gson = new Gson();
-    private final JsonObject conversationJsonObject = new JsonObject();
     private final JsonArray nodesJsonArray = new JsonArray();
     private final ArrayList<Node> nodesList = new ArrayList<>();
 
     /**
-     * Constructs a Conversation object with the provided Nodes
+     * Constructs a conversationElements.Conversation object with the provided Nodes
+     *
      * @param nodes an array of conversation Nodes
      */
     public Conversation(Node[] nodes) {
@@ -25,7 +26,8 @@ public class Conversation {
 
     /**
      * Adds a node to the conversation
-     * @param node Node, node to add
+     *
+     * @param node conversationElements.Node, node to add
      */
     public void addNode(Node node) {
         JsonObject jsonNode = new JsonObject();
@@ -41,19 +43,23 @@ public class Conversation {
             jsonNode.addProperty("final", true);
         }
 
-        nodesJsonArray.add(jsonNode);
+        this.nodesJsonArray.add(jsonNode);
     }
 
     /**
      * Returns a string in Json format of the this conversation
+     *
      * @return String, a Json string
      */
     public String getJsonString() {
+        Gson gson = new Gson();
+        JsonObject conversationJsonObject = new JsonObject();
+
         // Add each node to a json array of nodes
-        nodesList.forEach(this::addNode);
+        this.nodesList.forEach(this::addNode);
 
         // Adds the nodes json array to a root json object
-        conversationJsonObject.add("nodes", nodesJsonArray);
+        conversationJsonObject.add("nodes", this.nodesJsonArray);
 
         // Return the conversation json object as string
         return gson.toJson(conversationJsonObject);
