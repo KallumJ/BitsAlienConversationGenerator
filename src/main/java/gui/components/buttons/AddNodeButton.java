@@ -1,6 +1,7 @@
-package gui.components;
+package gui.components.buttons;
 
 import gui.IComponent;
+import gui.components.NodeGUIComponent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -33,6 +34,7 @@ public class AddNodeButton implements EventHandler<ActionEvent>, IComponent<Butt
 
     /**
      * Returns the Button
+     *
      * @return Button, the button
      */
     @Override

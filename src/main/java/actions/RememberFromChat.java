@@ -1,12 +1,15 @@
 package actions;
 
 import com.google.gson.JsonObject;
+import gui.components.GUITextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 /**
  * A class to model a "remember_from_chat" action in an Alien conversationElements.Conversation
  */
 public class RememberFromChat implements IAction {
-    private static final String ACTION_STRING = "remember_from_chat";
+    public static final String ACTION_STRING = "remember_from_chat";
     private final String key;
 
     /**
@@ -46,5 +49,16 @@ public class RememberFromChat implements IAction {
     public void writeToJson(JsonObject json) {
         json.addProperty("action", this.getActionString());
         json.addProperty("key", this.getKey());
+    }
+
+    public static VBox getGUIComponent() {
+        VBox vbox = new VBox();
+        vbox.setId(ACTION_STRING);
+
+        HBox keyTextField = new GUITextField("Key").getComponent();
+
+        vbox.getChildren().addAll(keyTextField);
+
+        return vbox;
     }
 }

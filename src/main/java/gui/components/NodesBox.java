@@ -1,48 +1,52 @@
 package gui.components;
 
+import gui.GUI;
 import gui.IComponent;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.layout.GridPane;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TitledPane;
+import javafx.scene.layout.TilePane;
 
 /**
  * A class to model a grid to hold the Nodes in the conversation
  */
-public class NodesBox implements IComponent<GridPane> {
+public class NodesBox implements IComponent<ScrollPane> {
 
-    private final GridPane gridPane;
-
-    private int row = 0;
-    private int column = 0;
+    private final TilePane tilePane;
 
     /**
      * Constructs the NodesBox object
      */
     public NodesBox() {
-        this.gridPane = new GridPane();
+        this.tilePane = new TilePane();
+        this.tilePane.setAlignment(Pos.CENTER);
+        this.tilePane.setId("nodesContainer");
     }
 
     /**
      * A method to add a node to the grid
+     *
      * @param node NodeGUIComponent
      */
     public void addNode(Node node) {
-        gridPane.add(node, column, row);
-
-        // Rollover the current index of the grid when reaching the end
-        column++;
-        if (column == 4) {
-            row++;
-            column = 0;
-        }
-
+        tilePane.getChildren().add(node);
     }
 
     /**
      * Returns the grid
-     * @return GridPane, the grid
+     *
+     * @return TilePane, the grid
      */
     @Override
-    public GridPane getComponent() {
-        return this.gridPane;
+    public ScrollPane getComponent() {
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setContent(tilePane);
+        return scrollPane;
+    }
+
+    public void removeNode(TitledPane component, Integer nodeId) {
+        this.tilePane.getChildren().remove(component);
+        GUI.NODE_MAP.remove(nodeId);
     }
 }

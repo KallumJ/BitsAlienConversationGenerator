@@ -7,9 +7,13 @@ import com.google.gson.JsonObject;
  * A class to model an individual response from the player in the alien conversation system in Bits+
  */
 public class Response {
-    private final String text;
-    private final IAction action;
-    private final int nextNode;
+    private String text;
+    private IAction action;
+    private int nextNode;
+    private int parentNode;
+    private int responseId;
+
+    private static int startingResponseId;
 
     /**
      * Constructs a response object with the provided information
@@ -22,6 +26,11 @@ public class Response {
         this.text = text;
         this.action = action;
         this.nextNode = nextNode;
+    }
+
+    public Response() {
+        startingResponseId++;
+        this.responseId = startingResponseId;
     }
 
     /**
@@ -41,4 +50,23 @@ public class Response {
         return jsonObject;
     }
 
+    public void setNextNode(int nextNode) {
+        this.nextNode = nextNode;
+    }
+
+    public int getNextNode() {
+        return nextNode;
+    }
+
+    public void setParentNode(int parentNode) {
+        this.parentNode = parentNode;
+    }
+
+    public int getParentNode() {
+        return parentNode;
+    }
+
+    public int getResponseId() {
+        return responseId;
+    }
 }

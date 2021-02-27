@@ -1,4 +1,4 @@
-package gui.components;
+package gui.components.buttons;
 
 import gui.IComponent;
 import javafx.event.ActionEvent;
@@ -16,10 +16,12 @@ public class BuildConversationButton implements IComponent<Button>, EventHandler
      */
     public BuildConversationButton() {
         this.buildConvoButton = new Button("Build Conversation");
+        this.buildConvoButton.setOnAction(this);
     }
 
     /**
      * Returns the button
+     *
      * @return Button, the button
      */
     @Override
@@ -29,10 +31,11 @@ public class BuildConversationButton implements IComponent<Button>, EventHandler
 
     /**
      * A method to be called when the Build Conversation button is pressed
+     *
      * @param event ActionEvent, the invoking event
      */
     @Override
     public void handle(ActionEvent event) {
-        System.out.println("BUILDING CONVERSATION");
+
     }
 }

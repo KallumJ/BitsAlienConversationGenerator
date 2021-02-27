@@ -19,4 +19,5 @@ public interface IAction {
      * @param json the JsonObject
      */
     void writeToJson(JsonObject json);
+
 }

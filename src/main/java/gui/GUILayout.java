@@ -2,6 +2,7 @@ package gui;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Control;
 import javafx.scene.layout.VBox;
 
 /**
@@ -18,10 +19,13 @@ public class GUILayout {
 
         this.layout.setAlignment(Pos.TOP_LEFT);
         this.layout.setPadding(new Insets(20));
+        this.layout.prefHeight(Control.USE_COMPUTED_SIZE);
+        this.layout.setMaxHeight(Double.POSITIVE_INFINITY);
     }
 
     /**
      * Returns the layout in the form of a VBox
+     *
      * @return VBox, the layout
      */
     public VBox getLayout() {

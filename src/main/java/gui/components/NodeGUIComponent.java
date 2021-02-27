@@ -1,7 +1,10 @@
 package gui.components;
 
 import conversationElements.Node;
+import gui.GUI;
 import gui.IComponent;
+import gui.components.buttons.AddNodeTextButton;
+import gui.components.buttons.AddResponsesButton;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.TitledPane;
@@ -21,10 +24,14 @@ public class NodeGUIComponent implements IComponent<TitledPane> {
     public NodeGUIComponent() {
         this.node = new Node();
         this.titledPane = setupTitledPane();
+        this.titledPane.setPadding(new Insets(30));
+
+        GUI.NODE_MAP.put(this.getNode().getId(), this.node);
     }
 
     /**
      * Configure the Titled Pane with the appropriate properties
+     *
      * @return TitledPane, the configured TitledPane
      */
     private TitledPane setupTitledPane() {
@@ -35,12 +42,14 @@ public class NodeGUIComponent implements IComponent<TitledPane> {
         titledPane.setPadding(new Insets(10));
 
         // Set up Titled Pane content
-        HBox nodeText = new GUITextField("Node text").getComponent();
+        HBox nodeHeader = new NodeHeader().getComponent();
+        Button nodeTextButton  = new AddNodeTextButton().getComponent();
         Button addResponsesButton = new AddResponsesButton().getComponent();
 
         // Add to titled pane
         VBox vbox = new VBox(10);
-        vbox.getChildren().addAll(nodeText, addResponsesButton);
+        vbox.setId("Node " + node.getId());
+        vbox.getChildren().addAll(nodeHeader, nodeTextButton, addResponsesButton);
 
         titledPane.setContent(vbox);
 
@@ -49,10 +58,15 @@ public class NodeGUIComponent implements IComponent<TitledPane> {
 
     /**
      * Returns the TitledPane
+     *
      * @return TitledPane, the titled pane
      */
     @Override
     public TitledPane getComponent() {
         return this.titledPane;
+    }
+
+    public Node getNode() {
+        return node;
     }
 }

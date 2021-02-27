@@ -1,12 +1,15 @@
 package actions;
 
 import com.google.gson.JsonObject;
+import gui.components.GUITextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 /**
  * A class to model a pay_and_advance action in Alien Conversations
  */
 public class PayAndAdvance implements IAction {
-    private static final String ACTION_STRING = "pay_and_advance";
+    public static final String ACTION_STRING = "pay_and_advance";
 
     private final String item;
 
@@ -47,5 +50,16 @@ public class PayAndAdvance implements IAction {
     public void writeToJson(JsonObject json) {
         json.addProperty("action", this.getActionString());
         json.addProperty("item", this.getItem());
+    }
+
+    public static VBox getGUIComponent() {
+        VBox vbox = new VBox();
+        vbox.setId(ACTION_STRING);
+
+        HBox itemTextField = new GUITextField("Item").getComponent();
+
+        vbox.getChildren().addAll(itemTextField);
+
+        return vbox;
     }
 }

@@ -14,6 +14,7 @@ public class GUITextField implements IComponent<HBox> {
 
     /**
      * Constructs a GUITextField object
+     *
      * @param labelText The text to label the textbox with
      */
     public GUITextField(String labelText) {
@@ -21,6 +22,7 @@ public class GUITextField implements IComponent<HBox> {
 
         // Configures a HBox with text field and label
         TextField textField = new TextField();
+        textField.setId(labelText);
         Label label = new Label(labelText);
         label.setLabelFor(textField);
         label.setPadding(new Insets(5));
@@ -31,6 +33,7 @@ public class GUITextField implements IComponent<HBox> {
 
     /**
      * Return the text field
+     *
      * @return HBox, text field and label
      */
     @Override
