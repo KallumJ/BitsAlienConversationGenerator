@@ -15,12 +15,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.io.Writer;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -198,7 +195,7 @@ public class BuildConversationButton implements IComponent<Button>, EventHandler
 
         // Create list of all nodes on screen
         ArrayList<TitledPane> nodesOnScreen = new ArrayList<>();
-        for (Node node: nodesContainer.getChildren()) {
+        for (Node node : nodesContainer.getChildren()) {
             nodesOnScreen.add((TitledPane) node);
         }
 

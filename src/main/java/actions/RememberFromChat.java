@@ -21,6 +21,17 @@ public class RememberFromChat implements IAction {
         this.key = key;
     }
 
+    public static VBox getGUIComponent() {
+        VBox vbox = new VBox();
+        vbox.setId(ACTION_STRING);
+
+        HBox keyTextField = new GUITextField("Key").getComponent();
+
+        vbox.getChildren().addAll(keyTextField);
+
+        return vbox;
+    }
+
     /**
      * Returns the key for this action
      *
@@ -49,16 +60,5 @@ public class RememberFromChat implements IAction {
     public void writeToJson(JsonObject json) {
         json.addProperty("action", this.getActionString());
         json.addProperty("key", this.getKey());
-    }
-
-    public static VBox getGUIComponent() {
-        VBox vbox = new VBox();
-        vbox.setId(ACTION_STRING);
-
-        HBox keyTextField = new GUITextField("Key").getComponent();
-
-        vbox.getChildren().addAll(keyTextField);
-
-        return vbox;
     }
 }

@@ -7,13 +7,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class ResponseGUIComponent implements IComponent<VBox> {
-    private final VBox vbox;
-    private Response response;
-
     private static final String CSS_STYLING = "-fx-border-color: gray;\n" +
             "-fx-border-insets: 10;\n" +
             "-fx-border-width: 3;\n" +
             "-fx-border-style: solid;\n";
+    private final VBox vbox;
+    private Response response;
 
     public ResponseGUIComponent() {
         this.response = new Response();

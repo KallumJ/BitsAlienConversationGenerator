@@ -14,10 +14,10 @@ import javafx.scene.layout.VBox;
 
 public class AddNodeLinkButton implements IComponent<HBox>, EventHandler<ActionEvent> {
 
+    private static final String LABEL_TEXT = "Linked to: ";
     private final Button addNodeLinkButton;
     private final HBox hbox;
     private final Label label;
-    private static final String LABEL_TEXT = "Linked to: ";
 
     public AddNodeLinkButton() {
         this.addNodeLinkButton = new Button("⛓️");

@@ -22,6 +22,17 @@ public class PayAndAdvance implements IAction {
         this.item = item;
     }
 
+    public static VBox getGUIComponent() {
+        VBox vbox = new VBox();
+        vbox.setId(ACTION_STRING);
+
+        HBox itemTextField = new GUITextField("Item").getComponent();
+
+        vbox.getChildren().addAll(itemTextField);
+
+        return vbox;
+    }
+
     /**
      * Returns the item to be paid
      *
@@ -50,16 +61,5 @@ public class PayAndAdvance implements IAction {
     public void writeToJson(JsonObject json) {
         json.addProperty("action", this.getActionString());
         json.addProperty("item", this.getItem());
-    }
-
-    public static VBox getGUIComponent() {
-        VBox vbox = new VBox();
-        vbox.setId(ACTION_STRING);
-
-        HBox itemTextField = new GUITextField("Item").getComponent();
-
-        vbox.getChildren().addAll(itemTextField);
-
-        return vbox;
     }
 }

@@ -1,7 +1,7 @@
 package gui.components.buttons;
 
-import gui.components.IComponent;
 import gui.components.GUITextField;
+import gui.components.IComponent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;

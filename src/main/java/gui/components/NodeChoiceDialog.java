@@ -5,7 +5,7 @@ import javafx.scene.control.ChoiceDialog;
 
 import java.util.ArrayList;
 
-public class NodeChoiceDialog implements IComponent<ChoiceDialog<String>>  {
+public class NodeChoiceDialog implements IComponent<ChoiceDialog<String>> {
     private final ChoiceDialog<String> choiceDialog;
 
     public NodeChoiceDialog() {

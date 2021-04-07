@@ -43,7 +43,7 @@ public class NodeGUIComponent implements IComponent<TitledPane> {
 
         // Set up Titled Pane content
         HBox nodeHeader = new NodeHeader().getComponent();
-        Button nodeTextButton  = new AddNodeTextButton().getComponent();
+        Button nodeTextButton = new AddNodeTextButton().getComponent();
         Button addResponsesButton = new AddResponsesButton().getComponent();
 
         // Add to titled pane

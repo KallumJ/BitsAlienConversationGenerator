@@ -10,11 +10,10 @@ import java.util.Arrays;
  */
 public class ConvoNode {
 
+    private static int startingNodeId = 0;
     private final int nodeId;
     private ArrayList<String> nodeTexts = new ArrayList<>();
     private ArrayList<Response> responseList = new ArrayList<>();
-
-    private static int startingNodeId = 0;
 
     /**
      * Constructs a conversation node object with the provided information
